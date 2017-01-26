@@ -3,10 +3,12 @@
 namespace privacy_policy_genius;
 
 use smartcat\core\AbstractPlugin;
+use smartcat\core\HookSubscriber;
 
-class PrivacyPolicyGenius extends AbstractPlugin {
+class PrivacyPolicyGenius extends AbstractPlugin implements HookSubscriber {
 
     public function start() {
+        $this->add_api_subscriber( $this );
         $this->add_api_subscriber( include_once $this->dir . '/config/admin_settings.php' );
 
         add_shortcode( 'privacy_policy2', function () {
@@ -20,6 +22,21 @@ class PrivacyPolicyGenius extends AbstractPlugin {
         if( $option != false ) {
             include_once $this->dir . '/migrate.php';
         }
+    }
+
+    public function get_string_resources() {
+        if( empty( $this->strings ) ) {
+            $file = file_get_contents( $this->dir . '/res/strings.json' );
+            $this->strings = json_decode( $file, true );
+        }
+
+        return $this->strings;
+    }
+
+    public function subscribed_hooks() {
+        return array(
+            'privacy_policy_genius_strings' => array( 'get_string_resources' )
+        );
     }
 
     public static function countries() {

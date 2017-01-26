@@ -4,6 +4,7 @@ namespace privacy_policy_genius;
 
 use privacy_policy_genius\admin\CheckBoxGroup;
 use privacy_policy_genius\admin\RadioGroup;
+use privacy_policy_genius\util\StringUtils;
 use smartcat\admin\CheckBoxField;
 use smartcat\admin\MatchFilter;
 use smartcat\admin\SelectBoxField;
@@ -112,13 +113,25 @@ $section_1->add_field( new TextField(
 
 $section_2 = new SettingsSection( 'section_2', '' );
 
+$strings = StringUtils::get_strings();
+
 $section_2->add_field( new CheckBoxGroup(
     array(
         'id'            => 'privacy_policy_data_collection',
         'option'        => '',
-        'options'       => array(),
+        'options'       => StringUtils::localize_strings( $strings['policies']['data_collection'] ),
         'value'         => '',
         'label'         => __( 'Data Collection', PLUGIN_ID ),
+        'validators'    => array()
+    )
+
+) )->add_field( new CheckBoxGroup(
+    array(
+        'id'            => 'privacy_policy_information_use',
+        'option'        => '',
+        'options'       => StringUtils::localize_strings( $strings['policies']['information_use'] ),
+        'value'         => '',
+        'label'         => __( 'Use of personal information', PLUGIN_ID ),
         'validators'    => array()
     )
 
@@ -130,6 +143,16 @@ $section_2->add_field( new CheckBoxGroup(
         'label'         => __( 'Personal information transfer', PLUGIN_ID ),
         'desc'          => __( 'Does your website transfer personal information to third parties?', PLUGIN_ID ),
         'validators'    => array( new MatchFilter( array( '', 'on' ), '' ) )
+    )
+
+) )->add_field( new CheckBoxGroup(
+    array(
+        'id'            => 'privacy_policy_information_transfer',
+        'option'        => '',
+        'options'       => StringUtils::localize_strings( $strings['policies']['information_transfer'] ),
+        'value'         => '',
+        'label'         => __( 'Purposes of transferring personal information', PLUGIN_ID ),
+        'validators'    => array()
     )
 
 ) )->add_field( new RadioGroup(
