@@ -137,7 +137,7 @@ $section_2->add_field( new CheckBoxGroup(
 
 ) )->add_field( new CheckBoxField(
     array(
-        'id'            => 'privacy_policy_third_party',
+        'id'            => 'privacy_policy_info_transfer',
         'option'        => '',
         'value'         => '',
         'label'         => __( 'Personal information transfer', PLUGIN_ID ),
@@ -147,7 +147,7 @@ $section_2->add_field( new CheckBoxGroup(
 
 ) )->add_field( new CheckBoxGroup(
     array(
-        'id'            => 'privacy_policy_information_transfer',
+        'id'            => 'privacy_policy_transfer_purpose',
         'option'        => '',
         'options'       => StringUtils::localize_strings( $strings['policies']['information_transfer'] ),
         'value'         => '',
