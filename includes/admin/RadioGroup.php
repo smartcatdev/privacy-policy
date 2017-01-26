@@ -5,7 +5,7 @@ namespace privacy_policy_genius\admin;
 
 use smartcat\admin\SettingsField;
 
-class RadioGroupField extends SettingsField {
+class RadioGroup extends SettingsField {
     protected $options;
     protected $break = false;
 

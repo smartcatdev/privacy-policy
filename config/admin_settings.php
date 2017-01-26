@@ -2,7 +2,8 @@
 
 namespace privacy_policy_genius;
 
-use privacy_policy_genius\admin\RadioGroupField;
+use privacy_policy_genius\admin\CheckBoxGroup;
+use privacy_policy_genius\admin\RadioGroup;
 use smartcat\admin\CheckBoxField;
 use smartcat\admin\MatchFilter;
 use smartcat\admin\SelectBoxField;
@@ -24,10 +25,10 @@ $section_1 = new SettingsSection( 'section_1', '' );
 $section_1->add_field( new TextField(
     array(
         'id'            => 'privacy_policy_company_name',
-        'option'        => '',
-        'value'         => '',
+        'option'        => 'privacy_policy_company_name',
+        'value'         => get_option( 'privacy_policy_company_name' ),
         'label'         => __( 'Company Name', PLUGIN_ID ),
-        'validators'    => __( new TextFilter() )
+        'validators'    => array( new TextFilter() )
     )
 
 ) )->add_field( new TextField(
@@ -36,7 +37,7 @@ $section_1->add_field( new TextField(
         'option'        => '',
         'value'         => '',
         'label'         => __( 'Company Address', PLUGIN_ID ),
-        'validators'    => __( new TextFilter() )
+        'validators'    => array( new TextFilter() )
     )
 
 ) )->add_field( new TextField(
@@ -45,7 +46,7 @@ $section_1->add_field( new TextField(
         'option'        => '',
         'value'         => '',
         'label'         => __( 'Company City', PLUGIN_ID ),
-        'validators'    => __( new TextFilter() )
+        'validators'    => array( new TextFilter() )
     )
 
 ) )->add_field( new TextField(
@@ -55,7 +56,7 @@ $section_1->add_field( new TextField(
         'value'         => '',
         'type'          => 'tel',
         'label'         => __( 'Phone Number', PLUGIN_ID ),
-        'validators'    => __( new TextFilter() )
+        'validators'    => array( new TextFilter() )
     )
 
 ) )->add_field( new TextField(
@@ -65,7 +66,7 @@ $section_1->add_field( new TextField(
         'value'         => '',
         'type'          => 'email',
         'label'         => __( 'Email Address', PLUGIN_ID ),
-        'validators'    => __( new TextFilter() )
+        'validators'    => array( new TextFilter() )
     )
 
 ) )->add_field( new TextField(
@@ -75,7 +76,7 @@ $section_1->add_field( new TextField(
             'value'         => '',
             'type'          => 'url',
             'label'         => __( 'Website', PLUGIN_ID ),
-            'validators'    => __( new TextFilter() )
+            'validators'    => array( new TextFilter() )
         )
 
 ) )->add_field( new TextField(
@@ -109,9 +110,19 @@ $section_1->add_field( new TextField(
 
 ) );
 
-$section_3 = new SettingsSection( 'section_3', '' );
+$section_2 = new SettingsSection( 'section_2', '' );
 
-$section_3->add_field( new CheckBoxField(
+$section_2->add_field( new CheckBoxGroup(
+    array(
+        'id'            => 'privacy_policy_data_collection',
+        'option'        => '',
+        'options'       => array(),
+        'value'         => '',
+        'label'         => __( 'Data Collection', PLUGIN_ID ),
+        'validators'    => array()
+    )
+
+) )->add_field( new CheckBoxField(
     array(
         'id'            => 'privacy_policy_third_party_info',
         'option'        => '',
@@ -121,7 +132,7 @@ $section_3->add_field( new CheckBoxField(
         'validators'    => array( new MatchFilter( array( '', 'on' ), '' ) )
     )
 
-) )->add_field( new RadioGroupField(
+) )->add_field( new RadioGroup(
     array(
         'id'            => 'privacy_policy_destroy_information',
         'option'        => '',
@@ -156,6 +167,6 @@ $section_3->add_field( new CheckBoxField(
 ) );
 
 $admin->add_section( $section_1 );
-$admin->add_section( $section_3 );
+$admin->add_section( $section_2 );
 
 return $admin;
