@@ -94,9 +94,9 @@ $section_1->add_field( new TextField(
         'id'            => 'privacy_policy_jurisdiction_country',
         'option'        => '',
         'value'         => '',
-        'options'       => PrivacyPolicyGenius::countries(),
+        'options'       => PrivacyPolicy::countries(),
         'label'         => __( 'Country of jurisdiction', PLUGIN_ID ),
-        'validators'    => array( new MatchFilter( PrivacyPolicyGenius::countries(), '' ) )
+        'validators'    => array( new MatchFilter( PrivacyPolicy::countries(), '' ) )
     )
 
 ) )->add_field( new SelectBoxField(
@@ -104,9 +104,9 @@ $section_1->add_field( new TextField(
         'id'            => 'privacy_policy_storage_country',
         'option'        => '',
         'value'         => '',
-        'options'       => PrivacyPolicyGenius::countries(),
+        'options'       => PrivacyPolicy::countries(),
         'label'         => __( 'Location of personal information storage', PLUGIN_ID ),
-        'validators'    => array( new MatchFilter( PrivacyPolicyGenius::countries(), '' ) )
+        'validators'    => array( new MatchFilter( PrivacyPolicy::countries(), '' ) )
     )
 
 ) );

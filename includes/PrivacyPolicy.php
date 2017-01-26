@@ -5,7 +5,7 @@ namespace privacy_policy_genius;
 use smartcat\core\AbstractPlugin;
 use smartcat\core\HookSubscriber;
 
-class PrivacyPolicyGenius extends AbstractPlugin implements HookSubscriber {
+class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
 
     public function start() {
         $this->add_api_subscriber( $this );
