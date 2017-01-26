@@ -137,7 +137,7 @@ $section_2->add_field( new CheckBoxGroup(
 
 ) )->add_field( new CheckBoxField(
     array(
-        'id'            => 'privacy_policy_third_party_info',
+        'id'            => 'privacy_policy_third_party',
         'option'        => '',
         'value'         => '',
         'label'         => __( 'Personal information transfer', PLUGIN_ID ),
