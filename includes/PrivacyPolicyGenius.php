@@ -21,4 +21,14 @@ class PrivacyPolicyGenius extends AbstractPlugin {
             include_once $this->dir . '/migrate.php';
         }
     }
+
+    public static function countries() {
+        return array(
+            ''          => __( 'Global', PLUGIN_ID ),
+            'us'        => __( 'United States', PLUGIN_ID ),
+            'ca'        => __( 'Canada', PLUGIN_ID ),
+            'hk'        => __( 'Hong Kong', PLUGIN_ID ),
+            'ru'        => __( 'Russian Federation', PLUGIN_ID ),
+        );
+    }
 }
