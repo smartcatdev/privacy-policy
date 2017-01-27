@@ -14,12 +14,8 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
         add_shortcode( 'privacy_policy', function () {
             echo include_once $this->dir . '/templates/template.php';
         } );
-    }
 
-    public function activate() {
-        $option = get_option( 'policy-plugin-options' );
-
-        if( $option != false ) {
+        if( get_option( 'policy-plugin-options' ) != false ) {
             include_once $this->dir . '/migrate.php';
         }
     }
