@@ -2,20 +2,21 @@
 
 namespace privacy_policy_genius;
 
+use privacy_policy_genius\admin\CheckBoxGroup;
 use privacy_policy_genius\descriptor\Options;
 use privacy_policy_genius\util\StringUtils;
 
 $countries = PrivacyPolicy::countries();
 $strings = StringUtils::get_strings();
 
-$transfer_purposes = get_option( Options::TRANSFER_PURPOSE, array() );
 $info_disposal = get_option( Options::INFO_DISPOSAL, '' );
 $contact_email = get_option( Options::EMAIL_ADDRESS, '' );
 $company = get_option( Options::COMPANY_NAME, '' );
 $website = esc_url( get_option( Options::WEBSITE, '' ) );
 $country = $countries[ get_option( Options::JURISDICTION_COUNTRY, '' ) ];
-$data_collection = get_option( Options::DATA_COLLECTION, array() );
-$information_use = get_option( Options::INFO_USE, array() );
+$transfer_purposes = CheckBoxGroup::get_option( Options::TRANSFER_PURPOSE );
+$data_collection = CheckBoxGroup::get_option( Options::DATA_COLLECTION );
+$information_use = CheckBoxGroup::get_option( Options::INFO_USE );
 
 $date = '';
 
@@ -30,55 +31,47 @@ $date = '';
     <?php _e( "While using our Site, we may ask you to provide us with certain information that can be used to contact or identify you. “Personal Information” is any information that is identifiable with you, as an individual.", PLUGIN_ID ); ?>
 </p>
 
-<?php if( is_array( $data_collection ) ) : ?>
+<p>
+    <?php _e( " Personal information we collect may include:", PLUGIN_ID ); ?>
+</p>
+<p>
+    <ul>
+        <?php foreach ( $data_collection as $data ) : ?>
 
-    <p>
-        <?php _e( " Personal information we collect may include:", PLUGIN_ID ); ?>
-    </p>
-    <p>
-        <ul>
-            <?php foreach ( $data_collection as $data ) : ?>
+            <?php if( array_key_exists( $data, $strings['policies']['data_collection'] ) ) : ?>
 
-                <?php if( array_key_exists( $data, $strings['policies']['data_collection'] ) ) : ?>
+                <li>
+                    <?php _e( $strings['policies']['data_collection'][ $data ], PLUGIN_ID ); ?>
+                </li>
 
-                    <li>
-                        <?php _e( $strings['policies']['data_collection'][ $data ], PLUGIN_ID ); ?>
-                    </li>
+            <?php endif; ?>
 
-                <?php endif; ?>
-
-            <?php endforeach; ?>
-        </ul>
-    </p>
-
-<?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</p>
 
 <p>
     <?php _e( "Personal Information, however, does not include your name, business title or business address or business telephone number in your capacity as an employee of an organization. {$company} will only collect personal information by fair and lawful means. The provision of personal information is voluntary.", PLUGIN_ID ); ?>
 </p>
 
-<?php if( is_array( $information_use ) ) : ?>
+<p>
+    <?php _e( "{$company} collects personal information for the following purposes:", PLUGIN_ID ); ?>
+</p>
+<p>
+    <ul>
+        <?php foreach( $information_use as $use ) : ?>
 
-    <p>
-        <?php _e( "{$company} collects personal information for the following purposes:", PLUGIN_ID ); ?>
-    </p>
-    <p>
-        <ul>
-            <?php foreach( $information_use as $use ) : ?>
+            <?php if( array_key_exists( $use, $strings['policies']['information_use'] ) ) : ?>
 
-                <?php if( array_key_exists( $use, $strings['policies']['information_use'] ) ) : ?>
+                <li>
+                    <?php _e( $strings['policies']['information_use'][ $use ], PLUGIN_ID ); ?>
+                </li>
 
-                    <li>
-                        <?php _e( $strings['policies']['information_use'][ $use ], PLUGIN_ID ); ?>
-                    </li>
+            <?php endif; ?>
 
-                <?php endif; ?>
-
-            <?php endforeach; ?>
-        </ul>
-    </p>
-
-<?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</p>
 
 <p>
     <?php _e( "Unless required or permitted by law, we shall not use or disclose your personal information for a new purpose not identified here.", PLUGIN_ID ); ?>
@@ -137,24 +130,19 @@ $date = '';
 
         <?php _e( "{$company} transfers personal information to third parties or service providers. We transfer information for the purposes of:", PLUGIN_ID ); ?>
 
-        <?php if( is_array( $transfer_purposes ) ) : ?>
+        <ul>
 
-            <ul>
+            <?php foreach( $transfer_purposes as $purpose ) : ?>
 
-                <?php foreach( $transfer_purposes as $purpose ) : ?>
+                <?php if( array_key_exists( $purpose, $strings['policies']['information_transfer'] ) ) : ?>
 
-                    <?php if( array_key_exists( $purpose, $strings['policies']['information_transfer'] ) ) : ?>
+                    <li><?php _e( $strings['policies']['information_transfer'][ $purpose ], PLUGIN_ID );?></li>
 
-                        <li><?php _e( $strings['policies']['information_transfer'][ $purpose ], PLUGIN_ID );?></li>
+                <?php endif; ?>
 
-                    <?php endif; ?>
+            <?php endforeach; ?>
 
-                 <?php endforeach; ?>
-
-            </ul>
-
-        <?php endif; ?>
-
+        </ul>
         <p>
             <?php _e( "Such information may be transferred across state or national borders, in which case the information would become subject to the legislation of that jurisdiction. {$company} ensures there is a data protection agreement in place with the third party to protect the personal information that is transferred. The third parties are prohibited from using your personal information for purposes other than that stated in our Policy.", PLUGIN_ID ); ?>
         </p>

@@ -8,13 +8,10 @@ use smartcat\admin\SettingsField;
 class CheckBoxGroup extends SettingsField {
 
     protected $options;
+    protected $value = array();
 
     public function __construct( array $args ) {
         parent::__construct( $args );
-
-        if( !is_array( $this->value ) ) {
-            $this->value = array();
-        }
 
         $this->options = $args['options'];
     }
@@ -41,5 +38,11 @@ class CheckBoxGroup extends SettingsField {
         </fieldset>
 
     <?php }
+
+    public static function get_option( $key, array $default = array() )  {
+        $value = get_option( $key, $default );
+
+        return is_array( $value ) ? $value : $default;
+    }
 
 }
