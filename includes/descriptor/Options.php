@@ -20,4 +20,5 @@ class Options {
     const INFO_DISPOSAL = 'privacy_policy_genius_personal-information-disposal';
     const CHILD_USAGE = 'privacy_policy_genius_usage-by-children';
     const COOKIES_USAGE = 'privacy_policy_genius_cookies-usage';
+    const LAST_UPDATED = 'privacy_policy_genius_last-updated';
 }

@@ -4,6 +4,7 @@ namespace privacy_policy_genius;
 
 use privacy_policy_genius\admin\ArrayFilter;
 use privacy_policy_genius\admin\CheckBoxGroup;
+use privacy_policy_genius\admin\HiddenField;
 use privacy_policy_genius\admin\RadioGroup;
 use privacy_policy_genius\admin\UrlFilter;
 use privacy_policy_genius\descriptor\Options;
@@ -117,6 +118,8 @@ $section_1->add_field( new TextField(
 ) );
 
 $section_2 = new SettingsSection( 'section_2', '' );
+
+$date = current_time( 'timestamp', '', '', true );
 $strings = StringUtils::get_strings();
 $disposal_options = array( 'destroy' => __( 'Destroy', PLUGIN_ID ), 'erase' => __( 'Erase', PLUGIN_ID ) );
 
@@ -190,6 +193,14 @@ $section_2->add_field( new CheckBoxGroup(
         'label'         => __( 'Usage of cookies', PLUGIN_ID ),
         'desc'          => __( 'Does your website use cookies?', PLUGIN_ID ),
         'validators'    => array( new MatchFilter( array( '', 'on' ), '' ) )
+    )
+
+) )->add_field( new HiddenField(
+    array(
+        'id'            => 'privacy_policy_last_updated',
+        'option'        => Options::LAST_UPDATED,
+        'value'         => $date,
+        'validators'    => array( new MatchFilter( array( $date ), $date ) )
     )
 
 ) );

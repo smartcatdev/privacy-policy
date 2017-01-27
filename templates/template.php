@@ -18,13 +18,16 @@ $transfer_purposes = CheckBoxGroup::get_option( Options::TRANSFER_PURPOSE );
 $data_collection = CheckBoxGroup::get_option( Options::DATA_COLLECTION );
 $information_use = CheckBoxGroup::get_option( Options::INFO_USE );
 
-$date = '';
+$date = date_i18n( get_option( 'date_format' ), get_option( Options::LAST_UPDATED, '' ) );
 
 ob_start();
 
 ?>
 
-<h3><?php _e( " {$company} Privacy Policy", PLUGIN_ID ); ?></h3>
+<h3><?php _e( " {$company} Website Privacy Policy", PLUGIN_ID ); ?></h3>
+<p>
+    <?php _e( "Last updated {$date}", PLUGIN_ID ); ?>
+</p>
 <p>
     <?php _e( "{$company} (\"us\", \"we\", or \"our\") operates {$website} the \"Site\", and we are committed to protecting the privacy and security of our users’ and visitors’ personal information. This Privacy Policy (“Policy”) informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site. Our privacy procedures have been implemented to comply with privacy legislation of {$country}.", PLUGIN_ID ); ?>
 </p>
@@ -204,5 +207,7 @@ ob_start();
         <a href="mailto:<?php esc_attr_e( $contact_email ); ?>"><?php echo $contact_email; ?></a>
     </p>
 </p>
+
+<?php var_dump( get_option('') ); ?>
 
 <?php return ob_get_clean(); ?>

@@ -7,7 +7,7 @@ if( !class_exists( '\smartcat\admin\SettingsField' ) ) :
 abstract class SettingsField {
     protected $id;
     protected $option;
-    protected $label;
+    protected $label = '';
     protected $desc = '';
     protected $value = '';
     protected $args = array();
@@ -16,8 +16,11 @@ abstract class SettingsField {
     public function __construct( array $args ) {
         $this->id = $args['id'];
         $this->option = $args['option'];
-        $this->label = $args['label'];
         $this->value = $args['value'];
+
+        if( !empty( $args['label'] ) ) {
+            $this->label = $args['label'];
+        }
 
         if( !empty( $args['validators' ] ) ) {
             $this->validators = $args['validators'];
