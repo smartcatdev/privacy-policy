@@ -8,10 +8,13 @@ use smartcat\admin\SettingsField;
 class CheckBoxGroup extends SettingsField {
 
     protected $options;
-    protected $value = array();
 
     public function __construct( array $args ) {
         parent::__construct( $args );
+
+        if( empty( $this->value ) ) {
+            $this->value = array();
+        }
 
         $this->options = $args['options'];
     }
@@ -25,7 +28,7 @@ class CheckBoxGroup extends SettingsField {
                 <label>
                     <input
                         type="checkbox"
-                        name="<?php esc_attr_e( $this->id ); ?>[]"
+                        name="<?php esc_attr_e( $this->option ); ?>[]"
                         value="<?php esc_attr_e( $option ); ?>"
                         <?php echo in_array( $option, $this->value ) ? 'checked' : ''; ?> />
 

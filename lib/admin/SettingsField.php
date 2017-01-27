@@ -17,10 +17,7 @@ abstract class SettingsField {
         $this->id = $args['id'];
         $this->option = $args['option'];
         $this->label = $args['label'];
-
-        if( !empty( $args['value'] ) ) {
-            $this->value = $args['value'];
-        }
+        $this->value = $args['value'];
 
         if( !empty( $args['validators' ] ) ) {
             $this->validators = $args['validators'];
