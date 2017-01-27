@@ -34,5 +34,41 @@
         "telephone_support": "Telephone Support",
         "marketing": "Selling or sharing data with marketing companies"
       }
+  },
+  "admin_checkbox_groups": {
+    "data_collection": {
+      "name": "Name",
+      "mailing_address": "Mailing Address",
+      "telephone_number": "Telephone Number",
+      "email_address": "Email Address",
+      "age": "Age",
+      "gender": "Gender",
+      "date": "Date of birth",
+      "credit_billing": "Credit card or billing info/credit history",
+      "health_status": "Health Status",
+      "marital_status": "Marital Status"
+    },
+    "information_use": {
+      "commercial_relations": "Commercial relations with customers",
+      "understand_customers": "Understand customer needs and preferences",
+      "market_enhancements": "Develop and enhance market services",
+      "meet_requirements": "Meet legal and regulatory requirements",
+      "evaluate_candidates": "Evaluate those who have submitted personal information",
+      "respond_to_inquiry": "Respond to inquiry upon contact",
+      "send_news_letter": "Newsletter subscriptions",
+      "register_for_events": "Registration for events and conferences",
+      "gather_feedback": "Gather opinions  and feedback through surveys",
+      "alert_new_products": "Alert about new products and services",
+      "statistical_analysis": "Statistical analysis",
+      "email_newsletters": "Email newsletters",
+      "other": "Other uses as may be permitted or required by applicable law"
+    },
+    "information_transfer": {
+      "fulfilling_policy": "Processing and fulfilling the purposes outlined in the policy",
+      "data_storage": "Providing data storage",
+      "data_processing": "Data processing",
+      "telephone_support": "Telephone Support",
+      "marketing": "Selling or sharing data with marketing companies"
+    }
   }
 }

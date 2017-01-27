@@ -124,20 +124,20 @@ $section_2->add_field( new CheckBoxGroup(
     array(
         'id'            => 'privacy_policy_data_collection',
         'option'        => Options::DATA_COLLECTION,
-        'options'       => StringUtils::localize_strings( $strings['policies']['data_collection'] ),
+        'options'       => StringUtils::localize_strings( $strings['admin_checkbox_groups']['data_collection'] ),
         'value'         => CheckBoxGroup::get_option( Options::DATA_COLLECTION ),
         'label'         => __( 'Data Collection', PLUGIN_ID ),
-        'validators'    => array( new ArrayFilter( array_keys( $strings['policies']['data_collection'] ) ) )
+        'validators'    => array( new ArrayFilter( array_keys( $strings['admin_checkbox_groups']['data_collection'] ) ) )
     )
 
 ) )->add_field( new CheckBoxGroup(
     array(
         'id'            => 'privacy_policy_information_use',
         'option'        => Options::INFO_USE,
-        'options'       => StringUtils::localize_strings( $strings['policies']['information_use'] ),
+        'options'       => StringUtils::localize_strings( $strings['admin_checkbox_groups']['information_use'] ),
         'value'         => CheckBoxGroup::get_option( Options::INFO_USE, array() ),
         'label'         => __( 'Use of personal information', PLUGIN_ID ),
-        'validators'    => array( new ArrayFilter( array_keys( $strings['policies']['information_use'] ) ) )
+        'validators'    => array( new ArrayFilter( array_keys( $strings['admin_checkbox_groups']['information_use'] ) ) )
     )
 
 ) )->add_field( new CheckBoxField(
@@ -154,10 +154,10 @@ $section_2->add_field( new CheckBoxGroup(
     array(
         'id'            => 'privacy_policy_transfer_purpose',
         'option'        => Options::TRANSFER_PURPOSE,
-        'options'       => StringUtils::localize_strings( $strings['policies']['information_transfer'] ),
+        'options'       => StringUtils::localize_strings( $strings['admin_checkbox_groups']['information_transfer'] ),
         'value'         => CheckBoxGroup::get_option( Options::TRANSFER_PURPOSE ),
         'label'         => __( 'Purposes of transferring personal information', PLUGIN_ID ),
-        'validators'    => array( new ArrayFilter( array_keys( $strings['policies']['information_transfer'] ) ) )
+        'validators'    => array( new ArrayFilter( array_keys( $strings['admin_checkbox_groups']['information_transfer'] ) ) )
     )
 
 ) )->add_field( new RadioGroup(
