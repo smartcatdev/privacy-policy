@@ -20,6 +20,8 @@ $information_use = CheckBoxGroup::get_option( Options::INFO_USE );
 
 $date = '';
 
+ob_start();
+
 ?>
 
 <h3><?php _e( " {$company} Privacy Policy", PLUGIN_ID ); ?></h3>
@@ -202,3 +204,5 @@ $date = '';
         <a href="mailto:<?php esc_attr_e( $contact_email ); ?>"><?php echo $contact_email; ?></a>
     </p>
 </p>
+
+<?php return ob_get_clean(); ?>
