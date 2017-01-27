@@ -13,7 +13,7 @@ $info_disposal = get_option( Options::INFO_DISPOSAL, '' );
 $contact_email = get_option( Options::EMAIL_ADDRESS, '' );
 $company = get_option( Options::COMPANY_NAME, '' );
 $website = esc_url( get_option( Options::WEBSITE, '' ) );
-$country = $countries[ get_option( Options::JURISDICTION_COUNTRY, '' ) ];
+$country = get_option( Options::JURISDICTION_COUNTRY, '' );
 $transfer_purposes = CheckBoxGroup::get_option( Options::TRANSFER_PURPOSE );
 $data_collection = CheckBoxGroup::get_option( Options::DATA_COLLECTION );
 $information_use = CheckBoxGroup::get_option( Options::INFO_USE );
@@ -29,7 +29,7 @@ ob_start();
     <?php _e( "Last updated {$date}", PLUGIN_ID ); ?>
 </p>
 <p>
-    <?php _e( "{$company} (\"us\", \"we\", or \"our\") operates {$website} the \"Site\", and we are committed to protecting the privacy and security of our users’ and visitors’ personal information. This Privacy Policy (“Policy”) informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site. Our privacy procedures have been implemented to comply with privacy legislation of {$country}.", PLUGIN_ID ); ?>
+    <?php _e( "{$company} (\"us\", \"we\", or \"our\") operates {$website} the \"Site\", and we are committed to protecting the privacy and security of our users’ and visitors’ personal information. This Privacy Policy (“Policy”) informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site. Our privacy procedures have been implemented to comply with " . ( $country != '' ? "privacy legislation of {$countries[ $country ]}" : 'global privacy legislation' ), PLUGIN_ID ); ?>
 </p>
 <h3><?php _e( 'Notice and Collection', PLUGIN_ID ); ?></h3>
 <p>
@@ -117,14 +117,14 @@ ob_start();
     <?php _e( "Prior to obtaining your consent, {$company} will describe the choices available to you and obtain implicit or explicit consent with respect to the collection, use, and disclosure of your personal information, except in certain situations otherwise permitted by the law. Where it is reasonable to do so, we may rely on your implied consent. Otherwise, we will rely on explicit consent received directly from you to collect or use your personal information, for example, the collection of your personal information if you subscribe to a newsletter on the Site.", PLUGIN_ID ); ?>
 </p>
 <p>
-    <?php _e( "You may withdraw or modify your consent at any time through contacting " . StringUtils::_s( $company ) . " Privacy Officer at: ", PLUGIN_ID ); ?><a href="mailto:<?php esc_attr_e( $contact_email ); ?>"><?php echo $contact_email; ?></a>
+    <?php _e( "You may withdraw or modify your consent at any time through contacting " . StringUtils::_s( $company, false ) . " Privacy Officer at: ", PLUGIN_ID ); ?><a href="mailto:<?php esc_attr_e( $contact_email ); ?>"><?php echo $contact_email; ?></a>
 </p>
 <h3><?php _e( 'Use and Retention' ); ?></h3>
 <p>
     <?php _e( "{$company} limits the use of personal information to the purposes identified in this Policy and for which the individual has provided implicit or explicit consent. We retain personal information for only as long as it is necessary to fulfill the stated purposes, except with the consent of the individual or as required by law.", PLUGIN_ID ); ?>
 </p>
 <p>
-    <?php _e( "Personal information provided to us by users is primarily stored on servers in {$country}.", PLUGIN_ID ); ?>
+    <?php _e( "Personal information provided to us by users is primarily stored on servers in {$countries[ $country ]}.", PLUGIN_ID ); //TODO list of countries ?>
 </p>
 <p>
     <?php _e( "{$company} will {$info_disposal} personal information that is no longer needed.", PLUGIN_ID ); ?>
