@@ -19,4 +19,20 @@ final class StringUtils {
 
         return $localized_strings;
     }
+
+    public static function _s( $str, $echo = true ) {
+        if( mb_substr( $str, -2 ) == "'s" ) {
+            $string = $str;
+        } elseif( mb_substr( $str, -1 ) == "s" ) {
+            $string = $str . "'";
+        } else {
+            $string = $str . "'s";
+        }
+
+        if( $echo ) {
+            echo $string;
+        }
+
+        return $string;
+    }
 }

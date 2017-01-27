@@ -12,7 +12,7 @@ class CheckBoxGroup extends SettingsField {
     public function __construct( array $args ) {
         parent::__construct( $args );
 
-        if( empty( $this->value ) ) {
+        if( !is_array( $this->value ) ) {
             $this->value = array();
         }
 
