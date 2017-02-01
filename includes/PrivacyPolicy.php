@@ -49,7 +49,7 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
                     <span class="close">&#10005</span>
                 </div>
                 <div class="bottom">
-                    <button class="close"></button>
+                    <button class="close">Accept</button>
                 </div>
             </div>
 

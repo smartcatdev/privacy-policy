@@ -9,12 +9,25 @@
     position: fixed;
     background-color: #fff;
     margin-right: 40px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.50);
 }
 
 #privacy_policy_cookies_notification .top {
     height: 30px;
     text-align: right;
     line-height: 30px;
+}
+
+#privacy_policy_cookies_notification .bottom {
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+#privacy_policy_cookies_notification .bottom .close {
+    margin: 10px;
+    font-size: 12px;
 }
 
 #privacy_policy_cookies_notification .top .close {
