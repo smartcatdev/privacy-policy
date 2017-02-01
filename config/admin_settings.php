@@ -119,7 +119,7 @@ $section_1->add_field( new TextField(
 
 $section_2 = new SettingsSection( 'section_2', '' );
 
-$date = current_time( 'timestamp', '', '', true );
+$date = current_time( 'timestamp' );
 $strings = StringUtils::get_strings();
 $disposal_options = array( 'destroy' => __( 'Destroy', PLUGIN_ID ), 'erase' => __( 'Erase', PLUGIN_ID ) );
 
