@@ -21,4 +21,5 @@ class Options {
     const CHILD_USAGE = 'privacy_policy_genius_usage-by-children';
     const COOKIES_USAGE = 'privacy_policy_genius_cookies-usage';
     const LAST_UPDATED = 'privacy_policy_genius_last-updated';
+    const DISPLAY_COOKIE = 'privacy_policy_genius_display-cookie-warning';
 }

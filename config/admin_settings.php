@@ -12,24 +12,29 @@ use privacy_policy_genius\util\StringUtils;
 use smartcat\admin\CheckBoxField;
 use smartcat\admin\MatchFilter;
 use smartcat\admin\SelectBoxField;
-use smartcat\admin\SettingsPage;
 use smartcat\admin\SettingsSection;
+use smartcat\admin\TabbedSettingsPage;
 use smartcat\admin\TextField;
 use smartcat\admin\TextFilter;
 
-$admin = new SettingsPage(
+$admin = new TabbedSettingsPage(
     array(
         'page_title' => __( 'Privacy Policy Configuration', PLUGIN_ID ),
         'menu_title' => __( 'Privacy Guru', PLUGIN_ID ),
-        'menu_slug' => 'privacy_guru'
+        'menu_slug'  => 'privacy_guru',
+        'tabs'       => array(
+            'company_info'  => __( 'Company Information', PLUGIN_ID ),
+            'policy_config' => __( 'Policy Configuration', PLUGIN_ID ),
+            'general'       => __( 'General', PLUGIN_ID )
+        )
     )
 );
 
-$section_1 = new SettingsSection( 'section_1', '' );
+$company_info = new SettingsSection( 'section_1', '' );
 
 $countries = PrivacyPolicy::countries();
 
-$section_1->add_field( new TextField(
+$company_info->add_field( new TextField(
     array(
         'id'            => 'privacy_policy_company_name',
         'option'        => Options::COMPANY_NAME,
@@ -95,7 +100,15 @@ $section_1->add_field( new TextField(
         'validators'    => array( new TextFilter() )
     )
 
-) )->add_field( new SelectBoxField(
+) );
+
+$policy_config = new SettingsSection( 'section_2', '' );
+
+$date = current_time( 'timestamp' );
+$strings = StringUtils::get_strings();
+$disposal_options = array( 'destroy' => __( 'Destroy', PLUGIN_ID ), 'erase' => __( 'Erase', PLUGIN_ID ) );
+
+$policy_config->add_field( new SelectBoxField(
     array(
         'id'            => 'privacy_policy_jurisdiction_country',
         'option'        => Options::JURISDICTION_COUNTRY,
@@ -115,15 +128,7 @@ $section_1->add_field( new TextField(
         'validators'    => array( new MatchFilter( array_keys( $countries ), '' ) )
     )
 
-) );
-
-$section_2 = new SettingsSection( 'section_2', '' );
-
-$date = current_time( 'timestamp' );
-$strings = StringUtils::get_strings();
-$disposal_options = array( 'destroy' => __( 'Destroy', PLUGIN_ID ), 'erase' => __( 'Erase', PLUGIN_ID ) );
-
-$section_2->add_field( new CheckBoxGroup(
+) )->add_field( new CheckBoxGroup(
     array(
         'id'            => 'privacy_policy_data_collection',
         'option'        => Options::DATA_COLLECTION,
@@ -205,7 +210,21 @@ $section_2->add_field( new CheckBoxGroup(
 
 ) );
 
-$admin->add_section( $section_1 );
-$admin->add_section( $section_2 );
+$general = new SettingsSection( 'general', '' );
+
+$general->add_field( new CheckBoxField(
+    array(
+        'id'            => 'privacy_policy_display_cookie',
+        'option'        => Options::DISPLAY_COOKIE,
+        'value'         => get_option( Options::DISPLAY_COOKIE, '' ),
+        'label'         => __( 'Cookie Warning', PLUGIN_ID ),
+        'desc'          => __( 'Display cookie warning to visitors of your website', PLUGIN_ID ),
+        'validators'    => array( new MatchFilter( array( '', 'on' ), '' ) )
+    )
+) );
+
+$admin->add_section( $company_info, 'company_info' );
+$admin->add_section( $policy_config, 'policy_config' );
+$admin->add_section( $general, 'general' );
 
 return $admin;
