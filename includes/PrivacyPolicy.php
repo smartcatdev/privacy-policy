@@ -36,6 +36,10 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
         <?php }
     }
 
+    public function add_action_links( $links ) {
+        return array( 'settings' => '<a href="' . menu_page_url( 'privacy_guru', false ) . '">' . __( 'Settings', PLUGIN_ID ) . '</a>' ) + $links;
+    }
+
     public function get_string_resources() {
         if( empty( $this->strings ) ) {
             $file = file_get_contents( $this->dir . '/res/strings.json' );
@@ -73,6 +77,7 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
 
     public function subscribed_hooks() {
         return array(
+            'plugin_action_links_' . plugin_basename( $this->file ) => array( 'add_action_links' ),
             'wp_head' => array( 'cookies_notification' ),
             'admin_enqueue_scripts' => array( 'enqueue_admin_scripts' ),
             'wp_enqueue_scripts' => array( 'enqueue_scripts' ),

@@ -42,6 +42,11 @@ interface Plugin {
     public function dir();
 
     /**
+     * @return string The path to the plugin file.
+     */
+    public function file();
+
+    /**
      * @return string The name of the plugin.
      */
     public function id();
