@@ -111,6 +111,7 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
             ''          => __( 'Global', PLUGIN_ID ),
             'us'        => __( 'The United States', PLUGIN_ID ),
             'ca'        => __( 'Canada', PLUGIN_ID ),
+            'uk'        => __( 'The United Kingdom', PLUGIN_ID ),
             'hk'        => __( 'Hong Kong', PLUGIN_ID ),
             'ru'        => __( 'The Russian Federation', PLUGIN_ID ),
         );
