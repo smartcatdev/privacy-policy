@@ -1,8 +1,8 @@
 #privacy_policy_cookies_notification {
     display: none;
     border: 2px solid #000;
-    height: 200px;
-    width: 300px;
+    max-width: 400px;
+    padding: 5px;
     z-index: 999;
     bottom: 0;
     right: 0;
@@ -16,6 +16,30 @@
     height: 30px;
     text-align: right;
     line-height: 30px;
+}
+
+#privacy_policy_cookies_notification .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+#privacy_policy_cookies_notification .message {
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+#privacy_policy_cookies_notification .url {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+#privacy_policy_cookies_notification .middle {
+    margin: 0 20px;
+    padding-bottom: 30px;
+    word-wrap: break-word;
 }
 
 #privacy_policy_cookies_notification .bottom {
@@ -36,4 +60,11 @@
     margin: 0;
     padding: 5px;
     cursor: pointer;
+    font-weight: bold;
+}
+
+@media only screen and (max-width : 767px) {
+    #privacy_policy_cookies_notification {
+        margin: 0;
+    }
 }
