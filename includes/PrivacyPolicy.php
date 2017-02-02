@@ -63,14 +63,32 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
     }
 
     public function cookies_notification() {
-        if( get_option( Options::DISPLAY_COOKIE_WARNING ) == 'on' ) { ?>
+        if( get_option( Options::DISPLAY_COOKIE_WARNING ) == 'on' ) {
+
+            $url = get_option( Options::POLICY_URL );
+            $url_text = get_option( Options::COOKIE_WARN_URL_TEXT, Options\Defaults::COOKIE_WARN_URL_TEXT ); ?>
 
             <div id="privacy_policy_cookies_notification">
                 <div class="top">
                     <span class="close">&#10005</span>
                 </div>
+                <div>
+                    <p>
+                        <?php _e( get_option( Options::COOKIE_WARN_TITLE, Options\Defaults::COOKIE_WARN_TITLE ), PLUGIN_ID ); ?>
+                    </p>
+                    <p>
+                        <?php echo substr( get_option( Options::COOKIE_WARN_MESSAGE, Options\Defaults::COOKIE_WARN_MESSAGE ), 0, 500 ); ?>
+                    </p>
+                    <?php if( !empty( $url ) && !empty( $url_text ) ) : ?>
+
+                        <a href="<?php echo esc_url( $url ); ?>"><?php _e( $url_text, PLUGIN_ID ); ?></a>
+
+                    <?php endif; ?>
+                </div>
                 <div class="bottom">
-                    <button class="close">Accept</button>
+                    <button class="close">
+                        <?php _e( get_option( Options::COOKIE_ACCEPT_BTN_TEXT, Options\Defaults::COOKIE_ACCEPT_BTN_TEXT ) ); ?>
+                    </button>
                 </div>
             </div>
 

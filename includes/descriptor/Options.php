@@ -24,6 +24,7 @@ class Options {
     const DISPLAY_COOKIE_WARNING = 'privacy_policy_genius_display-cookie-warning';
     const COOKIE_WARN_MESSAGE = 'privacy_policy_genius_cookie-notification-message';
     const COOKIE_WARN_TITLE = 'privacy_policy_genius_cookie-notification-title';
+    const COOKIE_WARN_URL_TEXT = 'privacy_policy_genius_cookie-notification-url-text';
     const COOKIE_ACCEPT_BTN_TEXT = 'privacy_policy_genius_cookie-notification-accept-text';
     const POLICY_URL = 'privacy_policy_genius_policy-url';
 }

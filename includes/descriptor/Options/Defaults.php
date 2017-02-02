@@ -8,4 +8,5 @@ class Defaults {
     const COOKIE_WARN_MESSAGE = 'This site uses cookies';
     const COOKIE_WARN_TITLE = 'Cookies usage warning';
     const COOKIE_ACCEPT_BTN_TEXT = 'Accept';
+    const COOKIE_WARN_URL_TEXT = 'Review our privacy policy';
 }

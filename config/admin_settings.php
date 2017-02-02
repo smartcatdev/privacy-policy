@@ -3,6 +3,7 @@
 namespace privacy_policy_genius;
 
 use privacy_policy_genius\admin\ArrayFilter;
+use privacy_policy_genius\admin\CharLimitFilter;
 use privacy_policy_genius\admin\CheckBoxGroup;
 use privacy_policy_genius\admin\HiddenField;
 use privacy_policy_genius\admin\RadioGroup;
@@ -230,7 +231,7 @@ $general->add_field( new CheckBoxField(
         'option'        => Options::COOKIE_WARN_TITLE,
         'value'         => get_option( Options::COOKIE_WARN_TITLE, Options\Defaults::COOKIE_WARN_TITLE ),
         'label'         => __( 'Notification Title', PLUGIN_ID ),
-        'desc'          => __( 'Title to display on cookie usage notification', PLUGIN_ID ),
+        'desc'          => __( 'Title to display on notification', PLUGIN_ID ),
         'validators'    => array( new TextFilter() )
     )
 ) )->add_field( new TextAreaField(
@@ -238,10 +239,11 @@ $general->add_field( new CheckBoxField(
         'id'            => 'privacy_policy_cookie_message',
         'option'        => Options::COOKIE_WARN_MESSAGE,
         'size'          => array( 50, 10 ),
+        'max_chars'     => 500,
         'value'         => get_option( Options::COOKIE_WARN_MESSAGE, Options\Defaults::COOKIE_WARN_MESSAGE ),
         'label'         => __( 'Notification Message', PLUGIN_ID ),
-        'desc'          => __( 'Message to display on cookie usage notification', PLUGIN_ID ),
-        'validators'    => array( new TextFilter() )
+        'desc'          => __( 'Message to display on notification (500 characters Max.)', PLUGIN_ID ),
+        'validators'    => array( new TextFilter(), new CharLimitFilter( 500, '...' ) )
     )
 ) )->add_field( new TextField(
     array(
@@ -262,6 +264,15 @@ $general->add_field( new CheckBoxField(
         'placeholder'   => 'http://',
         'desc'          => __( 'URL of page containing privacy policy', PLUGIN_ID ),
         'validators'    => array( new UrlFilter() )
+    )
+) )->add_field( new TextField(
+    array(
+        'id'            => 'privacy_policy_url_text',
+        'option'        => Options::COOKIE_WARN_URL_TEXT,
+        'value'         => get_option( Options::COOKIE_WARN_URL_TEXT, Options\Defaults::COOKIE_WARN_URL_TEXT ),
+        'label'         => __( 'Policy URL Text', PLUGIN_ID ),
+        'desc'          => __( 'Text to display for link to privacy policy', PLUGIN_ID ),
+        'validators'    => array( new TextFilter() )
     )
 ) );
 
