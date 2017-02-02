@@ -38,13 +38,11 @@
 
 #privacy_policy_cookies_notification .middle {
     margin: 0 20px;
-    padding-bottom: 30px;
     word-wrap: break-word;
 }
 
 #privacy_policy_cookies_notification .bottom {
     bottom: 0;
-    position: absolute;
     text-align: center;
     width: 100%;
 }
