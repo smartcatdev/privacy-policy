@@ -131,7 +131,7 @@ ob_start();
 </p>
 <h3><?php _e( 'Disclosure to Third Parties', PLUGIN_ID ); ?></h3>
 <p>
-    <?php if( get_option( Options::INFO_TRANSFER ) == 'on' ) : ?>
+    <?php if( get_option( Options::INFO_DISCLOSURE ) == 'on' ) : ?>
 
         <?php _e( "{$company} transfers personal information to third parties or service providers. We transfer information for the purposes of:", PLUGIN_ID ); ?>
 

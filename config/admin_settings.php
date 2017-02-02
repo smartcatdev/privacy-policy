@@ -6,6 +6,7 @@ use privacy_policy_genius\admin\ArrayFilter;
 use privacy_policy_genius\admin\CheckBoxGroup;
 use privacy_policy_genius\admin\HiddenField;
 use privacy_policy_genius\admin\RadioGroup;
+use privacy_policy_genius\admin\TextAreaField;
 use privacy_policy_genius\admin\UrlFilter;
 use privacy_policy_genius\descriptor\Options;
 use privacy_policy_genius\util\StringUtils;
@@ -23,8 +24,8 @@ $admin = new TabbedSettingsPage(
         'menu_title' => __( 'Privacy Guru', PLUGIN_ID ),
         'menu_slug'  => 'privacy_guru',
         'tabs'       => array(
-            'policy_config' => __( 'Policy Configuration', PLUGIN_ID ),
-            'general'       => __( 'General', PLUGIN_ID )
+            'general'       => __( 'General', PLUGIN_ID ),
+            'policy_config' => __( 'Policy Configuration', PLUGIN_ID )
         )
     )
 );
@@ -86,6 +87,7 @@ $company_info->add_field( new TextField(
             'option'        => Options::WEBSITE,
             'value'         => get_option( Options::WEBSITE, '' ),
             'type'          => 'url',
+            'placeholder'   => 'http://',
             'label'         => __( 'Website', PLUGIN_ID ),
             'validators'    => array( new UrlFilter() )
         )
@@ -113,7 +115,8 @@ $policy_config->add_field( new SelectBoxField(
         'option'        => Options::JURISDICTION_COUNTRY,
         'value'         => get_option( Options::JURISDICTION_COUNTRY, '' ),
         'options'       => $countries,
-        'label'         => __( 'Country of jurisdiction', PLUGIN_ID ),
+        'label'         => __( 'Country of Jurisdiction', PLUGIN_ID ),
+        'desc'          => __( 'Country where this policy will apply to', PLUGIN_ID ),
         'validators'    => array( new MatchFilter( array_keys( $countries ), '' ) )
     )
 
@@ -123,7 +126,8 @@ $policy_config->add_field( new SelectBoxField(
         'option'        => Options::STORAGE_LOCATION,
         'value'         => get_option( Options::STORAGE_LOCATION ),
         'options'       => $countries,
-        'label'         => __( 'Location of personal information storage', PLUGIN_ID ),
+        'label'         => __( 'Storage Location', PLUGIN_ID ),
+        'desc'          => __( 'Country where personal information is stored', PLUGIN_ID ),
         'validators'    => array( new MatchFilter( array_keys( $countries ), '' ) )
     )
 
@@ -150,8 +154,8 @@ $policy_config->add_field( new SelectBoxField(
 ) )->add_field( new CheckBoxField(
     array(
         'id'            => 'privacy_policy_info_transfer',
-        'option'        => Options::INFO_TRANSFER,
-        'value'         => get_option( Options::INFO_TRANSFER, '' ),
+        'option'        => Options::INFO_DISCLOSURE,
+        'value'         => get_option( Options::INFO_DISCLOSURE, '' ),
         'label'         => __( 'Third party disclosure', PLUGIN_ID ),
         'desc'          => __( 'Does your website transfer personal information to third parties?', PLUGIN_ID ),
         'validators'    => array( new MatchFilter( array( '', 'on' ), '' ) )
@@ -163,7 +167,7 @@ $policy_config->add_field( new SelectBoxField(
         'option'        => Options::TRANSFER_PURPOSE,
         'options'       => StringUtils::localize_strings( $strings['admin_checkbox_groups']['information_transfer'] ),
         'value'         => CheckBoxGroup::get_option( Options::TRANSFER_PURPOSE ),
-        'label'         => __( 'Purposes for transferring personal information', PLUGIN_ID ),
+        'label'         => __( 'Purposes of transfer', PLUGIN_ID ),
         'validators'    => array( new ArrayFilter( array_keys( $strings['admin_checkbox_groups']['information_transfer'] ) ) )
     )
 
@@ -209,16 +213,55 @@ $policy_config->add_field( new SelectBoxField(
 
 ) );
 
-$general = new SettingsSection( 'general', __( 'Cookies Notification', PLUGIN_ID ) );
+$general = new SettingsSection( 'general', __( 'Cookies Usage Notification', PLUGIN_ID ) );
 
 $general->add_field( new CheckBoxField(
     array(
         'id'            => 'privacy_policy_display_cookie',
-        'option'        => Options::DISPLAY_COOKIE,
-        'value'         => get_option( Options::DISPLAY_COOKIE, '' ),
-        'label'         => __( 'Cookie Warning', PLUGIN_ID ),
+        'option'        => Options::DISPLAY_COOKIE_WARNING,
+        'value'         => get_option( Options::DISPLAY_COOKIE_WARNING, Options\Defaults::DISPLAY_COOKIE_WARNING ),
+        'label'         => __( 'Display Usage Notification', PLUGIN_ID ),
         'desc'          => __( 'Display cookie warning to visitors of your website', PLUGIN_ID ),
         'validators'    => array( new MatchFilter( array( '', 'on' ), '' ) )
+    )
+) )->add_field( new TextField(
+    array(
+        'id'            => 'privacy_policy_cookie_title',
+        'option'        => Options::COOKIE_WARN_TITLE,
+        'value'         => get_option( Options::COOKIE_WARN_TITLE, Options\Defaults::COOKIE_WARN_TITLE ),
+        'label'         => __( 'Notification Title', PLUGIN_ID ),
+        'desc'          => __( 'Title to display on cookie usage notification', PLUGIN_ID ),
+        'validators'    => array( new TextFilter() )
+    )
+) )->add_field( new TextAreaField(
+    array(
+        'id'            => 'privacy_policy_cookie_message',
+        'option'        => Options::COOKIE_WARN_MESSAGE,
+        'size'          => array( 50, 10 ),
+        'value'         => get_option( Options::COOKIE_WARN_MESSAGE, Options\Defaults::COOKIE_WARN_MESSAGE ),
+        'label'         => __( 'Notification Message', PLUGIN_ID ),
+        'desc'          => __( 'Message to display on cookie usage notification', PLUGIN_ID ),
+        'validators'    => array( new TextFilter() )
+    )
+) )->add_field( new TextField(
+    array(
+        'id'            => 'privacy_policy_cookie_accept_btn_text',
+        'option'        => Options::COOKIE_ACCEPT_BTN_TEXT,
+        'value'         => get_option( Options::COOKIE_ACCEPT_BTN_TEXT, Options\Defaults::COOKIE_ACCEPT_BTN_TEXT ),
+        'label'         => __( 'Accept Button Text', PLUGIN_ID ),
+        'desc'          => __( 'Text to display on notification accept button', PLUGIN_ID ),
+        'validators'    => array( new TextFilter() )
+    )
+) )->add_field( new TextField(
+    array(
+        'id'            => 'privacy_policy_url',
+        'type'          => 'url',
+        'option'        => Options::POLICY_URL,
+        'value'         => get_option( Options::POLICY_URL, '' ),
+        'label'         => __( 'Policy Page URL', PLUGIN_ID ),
+        'placeholder'   => 'http://',
+        'desc'          => __( 'URL of page containing privacy policy', PLUGIN_ID ),
+        'validators'    => array( new UrlFilter() )
     )
 ) );
 

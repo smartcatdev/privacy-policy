@@ -88,7 +88,7 @@ if( isset( $old_options['use_cookies'] ) && $old_options['use_cookies'] == 'yes'
 }
 
 if( isset( $old_options['do_disclose'] ) && $old_options['do_disclose'] == 'yes' ) {
-    add_option( Options::INFO_TRANSFER, 'on' );
+    add_option( Options::INFO_DISCLOSURE, 'on' );
 }
 
 
