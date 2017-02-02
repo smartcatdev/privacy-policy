@@ -19,18 +19,17 @@ use smartcat\admin\TextFilter;
 
 $admin = new TabbedSettingsPage(
     array(
-        'page_title' => __( 'Privacy Policy Configuration', PLUGIN_ID ),
+        'page_title' => __( 'Privacy Policy', PLUGIN_ID ),
         'menu_title' => __( 'Privacy Guru', PLUGIN_ID ),
         'menu_slug'  => 'privacy_guru',
         'tabs'       => array(
-            'company_info'  => __( 'Company Information', PLUGIN_ID ),
             'policy_config' => __( 'Policy Configuration', PLUGIN_ID ),
             'general'       => __( 'General', PLUGIN_ID )
         )
     )
 );
 
-$company_info = new SettingsSection( 'section_1', '' );
+$company_info = new SettingsSection( 'company_info', __( 'Company Information', PLUGIN_ID ) );
 
 $countries = PrivacyPolicy::countries();
 
@@ -102,7 +101,7 @@ $company_info->add_field( new TextField(
 
 ) );
 
-$policy_config = new SettingsSection( 'section_2', '' );
+$policy_config = new SettingsSection( 'policy_config', __( 'Policy Options', PLUGIN_ID ) );
 
 $date = current_time( 'timestamp' );
 $strings = StringUtils::get_strings();
@@ -210,7 +209,7 @@ $policy_config->add_field( new SelectBoxField(
 
 ) );
 
-$general = new SettingsSection( 'general', '' );
+$general = new SettingsSection( 'general', __( 'Cookies Notification', PLUGIN_ID ) );
 
 $general->add_field( new CheckBoxField(
     array(
@@ -223,7 +222,7 @@ $general->add_field( new CheckBoxField(
     )
 ) );
 
-$admin->add_section( $company_info, 'company_info' );
+$admin->add_section( $company_info, 'policy_config' );
 $admin->add_section( $policy_config, 'policy_config' );
 $admin->add_section( $general, 'general' );
 
