@@ -208,7 +208,5 @@ ob_start();
     </p>
 </p>
 
-<?php var_dump( unserialize( get_option( 'policy-plugin-options' ) ) ); ?>
-
 <?php return ob_get_clean(); ?>
 

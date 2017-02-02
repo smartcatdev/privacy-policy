@@ -139,6 +139,8 @@ if( isset( $old_options['purposes'] ) && is_array( $old_options['purposes'] ) ) 
     add_option( Options::TRANSFER_PURPOSE, $info_transfer );
 }
 
+add_option( Options::LAST_UPDATED, current_time( 'timestamp' ) );
+
 delete_option( 'policy-plugin-options' );
 
 return true;

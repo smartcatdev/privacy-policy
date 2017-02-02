@@ -12,13 +12,28 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
         $this->add_api_subscriber( $this );
         $this->add_api_subscriber( include_once $this->dir . '/config/admin_settings.php' );
 
-        add_shortcode( 'privacy_policy', function () {
-            echo include_once $this->dir . '/templates/template.php';
-        } );
+        if( get_option( Options::LAST_UPDATED ) != false ) {
+            add_shortcode( 'privacy_policy', function () {
+                echo include_once $this->dir . '/templates/template.php';
+            } );
+        }
 
         if( get_option( 'policy-plugin-options' ) != false ) {
             include_once $this->dir . '/migrate.php';
         }
+    }
+
+    public function configuration_notice() {
+        if( !get_option( Options::LAST_UPDATED ) && get_current_screen()->id != 'settings_page_privacy_guru' ) { ?>
+
+                <div class="notice notice-warning is-dismissible">
+                    <p>
+                        <?php _e( 'Privacy policy has not been configured!', PLUGIN_ID ); ?>
+                        <a href="<?php menu_page_url( 'privacy_guru' ); ?>"><?php _e( 'Configure Privacy Policy', PLUGIN_ID ); ?></a>
+                    </p>
+                </div>
+
+        <?php }
     }
 
     public function get_string_resources() {
@@ -61,7 +76,8 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
             'wp_head' => array( 'cookies_notification' ),
             'admin_enqueue_scripts' => array( 'enqueue_admin_scripts' ),
             'wp_enqueue_scripts' => array( 'enqueue_scripts' ),
-            'privacy_policy_genius_strings' => array( 'get_string_resources' )
+            'privacy_policy_genius_strings' => array( 'get_string_resources' ),
+            'admin_notices' => array( 'configuration_notice' )
         );
     }
 
