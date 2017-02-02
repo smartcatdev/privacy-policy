@@ -134,7 +134,7 @@ $policy_config->add_field( new SelectBoxField(
         'option'        => Options::DATA_COLLECTION,
         'options'       => StringUtils::localize_strings( $strings['admin_checkbox_groups']['data_collection'] ),
         'value'         => CheckBoxGroup::get_option( Options::DATA_COLLECTION ),
-        'label'         => __( 'Data Collection', PLUGIN_ID ),
+        'label'         => __( 'Data Collected', PLUGIN_ID ),
         'validators'    => array( new ArrayFilter( array_keys( $strings['admin_checkbox_groups']['data_collection'] ) ) )
     )
 
@@ -153,7 +153,7 @@ $policy_config->add_field( new SelectBoxField(
         'id'            => 'privacy_policy_info_transfer',
         'option'        => Options::INFO_TRANSFER,
         'value'         => get_option( Options::INFO_TRANSFER, '' ),
-        'label'         => __( 'Personal information transfer', PLUGIN_ID ),
+        'label'         => __( 'Third party disclosure', PLUGIN_ID ),
         'desc'          => __( 'Does your website transfer personal information to third parties?', PLUGIN_ID ),
         'validators'    => array( new MatchFilter( array( '', 'on' ), '' ) )
     )
@@ -164,7 +164,7 @@ $policy_config->add_field( new SelectBoxField(
         'option'        => Options::TRANSFER_PURPOSE,
         'options'       => StringUtils::localize_strings( $strings['admin_checkbox_groups']['information_transfer'] ),
         'value'         => CheckBoxGroup::get_option( Options::TRANSFER_PURPOSE ),
-        'label'         => __( 'Purposes of transferring personal information', PLUGIN_ID ),
+        'label'         => __( 'Purposes for transferring personal information', PLUGIN_ID ),
         'validators'    => array( new ArrayFilter( array_keys( $strings['admin_checkbox_groups']['information_transfer'] ) ) )
     )
 
@@ -174,7 +174,7 @@ $policy_config->add_field( new SelectBoxField(
         'option'        => Options::INFO_DISPOSAL,
         'value'         => get_option( Options::INFO_DISPOSAL, '' ),
         'break'         => true,
-        'label'         => __( 'Personal information disposal', PLUGIN_ID ),
+        'label'         => __( 'Information disposal method', PLUGIN_ID ),
         'desc'          => __( 'How do you dispose personal information?', PLUGIN_ID ),
         'options'       => $disposal_options,
         'validators'    => array( new MatchFilter( array_keys( $disposal_options ), '' ) )
