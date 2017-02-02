@@ -207,7 +207,7 @@ $policy_config->add_field( new SelectBoxField(
 ) )->add_field( new HiddenField(
     array(
         'id'            => 'privacy_policy_last_updated',
-        'option'        => Options::LAST_UPDATED,
+        'option'        => Options::LAST_CONFIGURED,
         'value'         => $date,
         'validators'    => array( new MatchFilter( array( $date ), $date ) )
     )

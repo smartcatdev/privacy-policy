@@ -18,7 +18,7 @@ $transfer_purposes = CheckBoxGroup::get_option( Options::TRANSFER_PURPOSE );
 $data_collection = CheckBoxGroup::get_option( Options::DATA_COLLECTION );
 $information_use = CheckBoxGroup::get_option( Options::INFO_USE );
 
-$date = date_i18n( get_option( 'date_format' ), get_option( Options::LAST_UPDATED, '' ) );
+$date = date_i18n( get_option( 'date_format' ), get_option( Options::LAST_CONFIGURED, '' ) );
 
 ob_start();
 

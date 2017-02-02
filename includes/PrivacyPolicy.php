@@ -12,7 +12,7 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
         $this->add_api_subscriber( $this );
         $this->add_api_subscriber( include_once $this->dir . '/config/admin_settings.php' );
 
-        if( get_option( Options::LAST_UPDATED ) != false ) {
+        if( get_option( Options::LAST_CONFIGURED ) != false ) {
             add_shortcode( 'privacy_policy', function () {
                 echo include_once $this->dir . '/templates/template.php';
             } );
@@ -24,10 +24,11 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
     }
 
     public function configuration_notice() {
-        if( !get_option( Options::LAST_UPDATED ) && get_current_screen()->id != 'settings_page_privacy_guru' ) { ?>
+        if( !get_option( Options::LAST_CONFIGURED ) && get_current_screen()->id != 'settings_page_privacy_guru' ) { ?>
 
                 <div class="notice notice-warning is-dismissible">
                     <p>
+                        <span class="dashicons dashicons-warning"></span>
                         <?php _e( 'Privacy policy has not been configured!', PLUGIN_ID ); ?>
                         <a href="<?php echo menu_page_url( 'privacy_guru', false ) . '&tab=policy_config'; ?>">
                             <?php _e( 'Configure Privacy Policy', PLUGIN_ID ); ?>
@@ -74,7 +75,7 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
                 </div>
                 <div class="middle">
                     <p class="title"><?php _e( get_option( Options::COOKIE_WARN_TITLE, Options\Defaults::COOKIE_WARN_TITLE ), PLUGIN_ID ); ?></p>
-                    <p class="message"><?php echo substr( get_option( Options::COOKIE_WARN_MESSAGE, Options\Defaults::COOKIE_WARN_MESSAGE ), 0, 500 ); ?></p>
+                    <p class="message"><?php _e( substr( get_option( Options::COOKIE_WARN_MESSAGE, Options\Defaults::COOKIE_WARN_MESSAGE ), 0, 500 ), PLUGIN_ID ); ?></p>
 
                     <?php if( !empty( $url ) && !empty( $url_text ) ) : ?>
                         <p class="url">

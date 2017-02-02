@@ -20,7 +20,7 @@ class Options {
     const INFO_DISPOSAL = 'privacy_policy_genius_personal-information-disposal';
     const CHILD_USAGE = 'privacy_policy_genius_usage-by-children';
     const COOKIES_USAGE = 'privacy_policy_genius_cookies-usage';
-    const LAST_UPDATED = 'privacy_policy_genius_last-updated';
+    const LAST_CONFIGURED = 'privacy_policy_genius_last-configured';
     const DISPLAY_COOKIE_WARNING = 'privacy_policy_genius_display-cookie-warning';
     const COOKIE_WARN_MESSAGE = 'privacy_policy_genius_cookie-notification-message';
     const COOKIE_WARN_TITLE = 'privacy_policy_genius_cookie-notification-title';
