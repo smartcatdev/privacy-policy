@@ -29,7 +29,7 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
                 <div class="notice notice-warning is-dismissible">
                     <p>
                         <span class="dashicons dashicons-warning"></span>
-                        <?php _e( 'Privacy policy has not been configured!', PLUGIN_ID ); ?>
+                        <?php _e( 'Privacy policy has not been configured', PLUGIN_ID ); ?>
                         <a style="font-weight: bold; text-decoration: none"
                            href="<?php echo menu_page_url( 'privacy_guru', false ) . '&tab=policy_config'; ?>">
                             <?php _e( 'Configure Privacy Policy', PLUGIN_ID ); ?>
@@ -108,7 +108,7 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
 
     public static function countries() {
         return array(
-            ''          => __( 'Global', PLUGIN_ID ),
+            'global'    => __( 'Global', PLUGIN_ID ),
             'us'        => __( 'The United States', PLUGIN_ID ),
             'ca'        => __( 'Canada', PLUGIN_ID ),
             'uk'        => __( 'The United Kingdom', PLUGIN_ID ),

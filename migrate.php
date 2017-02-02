@@ -32,6 +32,10 @@ $country_code = function( $country ) {
         case 'Russian Federation':
             $val = 'ru';
             break;
+
+        case 'World':
+            $val = 'global';
+            break;
     }
 
     return $val;

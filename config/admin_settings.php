@@ -33,14 +33,13 @@ $admin = new TabbedSettingsPage(
 
 $company_info = new SettingsSection( 'company_info', __( 'Company Information', PLUGIN_ID ) );
 
-$countries = PrivacyPolicy::countries();
-
 $company_info->add_field( new TextField(
     array(
         'id'            => 'privacy_policy_company_name',
         'option'        => Options::COMPANY_NAME,
         'value'         => get_option( Options::COMPANY_NAME, '' ),
         'label'         => __( 'Company Name', PLUGIN_ID ),
+        'required'      => true,
         'validators'    => array( new TextFilter() )
     )
 
@@ -50,6 +49,7 @@ $company_info->add_field( new TextField(
         'option'        => Options::COMPANY_ADDRESS,
         'value'         => get_option( Options::COMPANY_ADDRESS, '' ),
         'label'         => __( 'Company Address', PLUGIN_ID ),
+        'required'      => true,
         'validators'    => array( new TextFilter() )
     )
 
@@ -59,6 +59,7 @@ $company_info->add_field( new TextField(
         'option'        => Options::COMPANY_CITY,
         'value'         => get_option( Options::COMPANY_CITY, '' ),
         'label'         => __( 'Company City', PLUGIN_ID ),
+        'required'      => true,
         'validators'    => array( new TextFilter() )
     )
 
@@ -69,6 +70,7 @@ $company_info->add_field( new TextField(
         'value'         => get_option( Options::PHONE_NUMBER, '' ),
         'type'          => 'tel',
         'label'         => __( 'Phone Number', PLUGIN_ID ),
+        'required'      => true,
         'validators'    => array( new TextFilter() )
     )
 
@@ -79,6 +81,7 @@ $company_info->add_field( new TextField(
         'value'         => get_option( Options::EMAIL_ADDRESS, '' ),
         'type'          => 'email',
         'label'         => __( 'Email Address', PLUGIN_ID ),
+        'required'      => true,
         'validators'    => array( new TextFilter() )
     )
 
@@ -86,10 +89,11 @@ $company_info->add_field( new TextField(
         array(
             'id'            => 'privacy_policy_company_website',
             'option'        => Options::WEBSITE,
-            'value'         => get_option( Options::WEBSITE, '' ),
+            'value'         => get_option( Options::WEBSITE, home_url() ),
             'type'          => 'url',
             'placeholder'   => 'http://',
             'label'         => __( 'Website', PLUGIN_ID ),
+            'required'      => true,
             'validators'    => array( new UrlFilter() )
         )
 
@@ -99,6 +103,7 @@ $company_info->add_field( new TextField(
         'option'        => Options::PRIVACY_OFFICER,
         'value'         => get_option( Options::PRIVACY_OFFICER, '' ),
         'label'         => __( 'Name of privacy officer', PLUGIN_ID ),
+        'required'      => true,
         'validators'    => array( new TextFilter() )
     )
 
@@ -109,6 +114,7 @@ $policy_config = new SettingsSection( 'policy_config', __( 'Policy Options', PLU
 $date = current_time( 'timestamp' );
 $strings = StringUtils::get_strings();
 $disposal_options = array( 'destroy' => __( 'Destroy', PLUGIN_ID ), 'erase' => __( 'Erase', PLUGIN_ID ) );
+$countries = array( '' => __( 'Select a Country', PLUGIN_ID ) ) + PrivacyPolicy::countries();
 
 $policy_config->add_field( new SelectBoxField(
     array(
@@ -117,6 +123,7 @@ $policy_config->add_field( new SelectBoxField(
         'value'         => get_option( Options::JURISDICTION_COUNTRY, '' ),
         'options'       => $countries,
         'label'         => __( 'Country of Jurisdiction', PLUGIN_ID ),
+        'required'      => true,
         'desc'          => __( 'Country where this policy will apply to', PLUGIN_ID ),
         'validators'    => array( new MatchFilter( array_keys( $countries ), '' ) )
     )
@@ -128,6 +135,7 @@ $policy_config->add_field( new SelectBoxField(
         'value'         => get_option( Options::STORAGE_LOCATION ),
         'options'       => $countries,
         'label'         => __( 'Storage Location', PLUGIN_ID ),
+        'required'      => true,
         'desc'          => __( 'Country where personal information is stored', PLUGIN_ID ),
         'validators'    => array( new MatchFilter( array_keys( $countries ), '' ) )
     )

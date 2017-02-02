@@ -10,6 +10,7 @@ abstract class SettingsField {
     protected $label = '';
     protected $desc = '';
     protected $value = '';
+    protected $required = false;
     protected $args = array();
     protected $validators = array();
 
@@ -17,6 +18,10 @@ abstract class SettingsField {
         $this->id = $args['id'];
         $this->option = $args['option'];
         $this->value = $args['value'];
+
+        if( !empty( $args['required'] ) ) {
+            $this->required = $args['required'];
+        }
 
         if( !empty( $args['label'] ) ) {
             $this->label = $args['label'];
