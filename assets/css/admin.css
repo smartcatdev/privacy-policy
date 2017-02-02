@@ -1,0 +1,13 @@
+h2.privacy_policy_admin_header {
+    display: inline-block;
+}
+
+div.privacy_policy_branding {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: middle;
+}
+
+div.privacy_policy_branding img {
+    width: 130px;
+}

@@ -62,6 +62,7 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
 
     public function enqueue_admin_scripts() {
         wp_enqueue_script( 'privacy_policy_genius_admin_js', $this->url . '/assets/js/admin.js', array( 'jquery'), PLUGIN_VERSION );
+        wp_enqueue_style( 'privacy_policy_genius_admin_css', $this->url . '/assets/css/admin.css', PLUGIN_VERSION );
     }
 
     public function cookies_notification() {

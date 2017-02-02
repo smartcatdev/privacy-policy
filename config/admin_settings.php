@@ -7,6 +7,7 @@ use privacy_policy_genius\admin\CharLimitFilter;
 use privacy_policy_genius\admin\CheckBoxGroup;
 use privacy_policy_genius\admin\HiddenField;
 use privacy_policy_genius\admin\RadioGroup;
+use privacy_policy_genius\admin\SettingsPage;
 use privacy_policy_genius\admin\TextAreaField;
 use privacy_policy_genius\admin\UrlFilter;
 use privacy_policy_genius\descriptor\Options;
@@ -15,11 +16,10 @@ use smartcat\admin\CheckBoxField;
 use smartcat\admin\MatchFilter;
 use smartcat\admin\SelectBoxField;
 use smartcat\admin\SettingsSection;
-use smartcat\admin\TabbedSettingsPage;
 use smartcat\admin\TextField;
 use smartcat\admin\TextFilter;
 
-$admin = new TabbedSettingsPage(
+$admin = new SettingsPage(
     array(
         'page_title' => __( 'Privacy Policy', PLUGIN_ID ),
         'menu_title' => __( 'Privacy Guru', PLUGIN_ID ),
