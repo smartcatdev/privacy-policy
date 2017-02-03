@@ -126,7 +126,7 @@ ob_start();
     <?php _e( "{$company} limits the use of personal information to the purposes identified in this Policy and for which the individual has provided implicit or explicit consent. We retain personal information for only as long as it is necessary to fulfill the stated purposes, except with the consent of the individual or as required by law.", PLUGIN_ID ); ?>
 </p>
 <p>
-    <?php _e( "Personal information provided to us by users is primarily stored on servers in " . ( $storage == 'other' ? 'another country' : $countries[ $storage ] ) . '.', PLUGIN_ID ); //TODO list of countries ?>
+    <?php _e( "Personal information provided to us by users is primarily stored on servers " . ( $storage == 'other' ? 'Internationally' : "in {$countries[ $storage ]}." ), PLUGIN_ID ); ?>
 </p>
 <p>
     <?php _e( "{$company} will {$info_disposal} personal information that is no longer needed.", PLUGIN_ID ); ?>
