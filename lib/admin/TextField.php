@@ -29,7 +29,7 @@ class TextField extends SettingsField {
             value="<?php esc_attr_e( $this->value ); ?>"
             placeholder="<?php esc_attr_e( $this->place_holder ); ?>"
             class="regular-text"
-            <?php echo $this->required ? 'required' : ''; ?> />
+            <?php echo $this->required ? 'required="required"' : ''; ?> />
 
         <?php if( !empty( $this->desc ) ) : ?>
 

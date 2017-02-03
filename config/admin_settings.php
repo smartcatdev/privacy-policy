@@ -186,6 +186,7 @@ $policy_config->add_field( new SelectBoxField(
         'option'        => Options::INFO_DISPOSAL,
         'value'         => get_option( Options::INFO_DISPOSAL, '' ),
         'break'         => true,
+        'required'      => true,
         'label'         => __( 'Information disposal method', PLUGIN_ID ),
         'desc'          => __( 'How do you dispose personal information?', PLUGIN_ID ),
         'options'       => $disposal_options,

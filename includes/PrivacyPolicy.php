@@ -109,12 +109,12 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
 
     public static function countries() {
         return array(
-            'global'    => __( 'Global', PLUGIN_ID ),
             'us'        => __( 'The United States', PLUGIN_ID ),
             'ca'        => __( 'Canada', PLUGIN_ID ),
             'uk'        => __( 'The United Kingdom', PLUGIN_ID ),
             'hk'        => __( 'Hong Kong', PLUGIN_ID ),
-            'ru'        => __( 'The Russian Federation', PLUGIN_ID ),
+            'ru'        => __( 'Russia', PLUGIN_ID ),
+            'other'     => __( 'Other', PLUGIN_ID )
         );
     }
 }

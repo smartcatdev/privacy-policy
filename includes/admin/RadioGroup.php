@@ -26,7 +26,8 @@ class RadioGroup extends SettingsField {
                     <input type="radio"
                            name="<?php esc_attr_e( $this->option ); ?>"
                            value="<?php esc_attr_e( $option ); ?>"
-                           <?php echo checked( $option, $this->value ); ?> />
+                           <?php echo checked( $option, $this->value ); ?>
+                           <?php echo $this->required ? 'required="required"' : ''; ?> />
 
                     <?php esc_html_e( $title ); ?>
 

@@ -36,7 +36,7 @@ class TextAreaField extends SettingsField {
                 echo 'maxlength="' . $this->max_chars . '"';
             } ?>
 
-            <?php echo $this->required ? 'required' : ''; ?>
+            <?php echo $this->required ? 'required="required"' : ''; ?>
 
             ><?php esc_attr_e( $this->value ); ?></textarea>
 

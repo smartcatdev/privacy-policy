@@ -14,6 +14,7 @@ $contact_email = get_option( Options::EMAIL_ADDRESS, '' );
 $company = get_option( Options::COMPANY_NAME, '' );
 $website = esc_url( get_option( Options::WEBSITE, '' ) );
 $country = get_option( Options::JURISDICTION_COUNTRY, '' );
+$storage = get_option( Options::STORAGE_LOCATION, '' );
 $transfer_purposes = CheckBoxGroup::get_option( Options::TRANSFER_PURPOSE );
 $data_collection = CheckBoxGroup::get_option( Options::DATA_COLLECTION );
 $information_use = CheckBoxGroup::get_option( Options::INFO_USE );
@@ -29,7 +30,8 @@ ob_start();
     <?php _e( "Last updated {$date}", PLUGIN_ID ); ?>
 </p>
 <p>
-    <?php _e( "{$company} (\"us\", \"we\", or \"our\") operates {$website} the \"Site\", and we are committed to protecting the privacy and security of our users’ and visitors’ personal information. This Privacy Policy (“Policy”) informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site. Our privacy procedures have been implemented to comply with " . ( $country != '' ? "privacy legislation of {$countries[ $country ]}" : 'global privacy legislation' ), PLUGIN_ID ); ?>
+    <?php _e( "{$company} (\"us\", \"we\", or \"our\") operates " , PLUGIN_ID ); ?><a href="<?php echo esc_url( $website ); ?>"><?php echo esc_url( $website ); ?></a>
+    <?php _e( " the \"Site\", and we are committed to protecting the privacy and security of our users’ and visitors’ personal information. This Privacy Policy (“Policy”) informs you of our policies regarding the collection, use and disclosure of Personal Information we receive from users of the Site. Our privacy procedures have been implemented to comply with " . ( $country == 'other' ? 'National privacy legislation.' : "the privacy legislation of {$countries[ $country ]}." ) , PLUGIN_ID ); ?>
 </p>
 <h3><?php _e( 'Notice and Collection', PLUGIN_ID ); ?></h3>
 <p>
@@ -124,7 +126,7 @@ ob_start();
     <?php _e( "{$company} limits the use of personal information to the purposes identified in this Policy and for which the individual has provided implicit or explicit consent. We retain personal information for only as long as it is necessary to fulfill the stated purposes, except with the consent of the individual or as required by law.", PLUGIN_ID ); ?>
 </p>
 <p>
-    <?php _e( "Personal information provided to us by users is primarily stored on servers in {$countries[ $country ]}.", PLUGIN_ID ); //TODO list of countries ?>
+    <?php _e( "Personal information provided to us by users is primarily stored on servers in " . ( $storage == 'other' ? 'another country' : $countries[ $storage ] ) . '.', PLUGIN_ID ); //TODO list of countries ?>
 </p>
 <p>
     <?php _e( "{$company} will {$info_disposal} personal information that is no longer needed.", PLUGIN_ID ); ?>
@@ -209,4 +211,3 @@ ob_start();
 </p>
 
 <?php return ob_get_clean(); ?>
-

@@ -34,7 +34,7 @@ $country_code = function( $country ) {
             break;
 
         case 'World':
-            $val = 'global';
+            $val = 'other';
             break;
     }
 

@@ -19,7 +19,7 @@ if( !class_exists( '\smartcat\admin\CSelectBoxField' ) ) :
             <select id="<?php esc_attr_e( $this->id ); ?>"
                 name="<?php esc_attr_e( $this->option ); ?>"
                 class="regular-text"
-                <?php echo $this->required ? 'required' : ''; ?>>
+                <?php echo $this->required ? 'required="required"' : ''; ?>>
 
                 <?php foreach( $this->options as $option => $title ) : ?>
 
