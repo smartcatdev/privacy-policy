@@ -56,13 +56,14 @@ class PrivacyPolicy extends AbstractPlugin implements HookSubscriber {
     public function enqueue_scripts() {
         if( get_option( Options::DISPLAY_COOKIE_WARNING ) == 'on' ) {
             wp_enqueue_script( 'privacy_policy_genius_cookie_js', $this->url . '/assets/js/cookie.js', array( 'jquery'), PLUGIN_VERSION );
-            wp_enqueue_style( 'privacy_policy_genius_cookie_css', $this->url . '/assets/css/cookie.css', PLUGIN_VERSION );
+            wp_enqueue_style( 'privacy_policy_genius_cookie_css', $this->url . '/assets/css/cookie.css', null, PLUGIN_VERSION );
+            wp_enqueue_style( 'privacy_policy_genius_style_css', $this->url . '/assets/css/style.css', null, PLUGIN_VERSION );
         }
     }
 
     public function enqueue_admin_scripts() {
         wp_enqueue_script( 'privacy_policy_genius_admin_js', $this->url . '/assets/js/admin.js', array( 'jquery'), PLUGIN_VERSION );
-        wp_enqueue_style( 'privacy_policy_genius_admin_css', $this->url . '/assets/css/admin.css', PLUGIN_VERSION );
+        wp_enqueue_style( 'privacy_policy_genius_admin_css', $this->url . '/assets/css/admin.css', null, PLUGIN_VERSION );
     }
 
     public function cookies_notification() {
